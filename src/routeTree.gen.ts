@@ -9,89 +9,48 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as PresentPerfectRouteImport } from './routes/present-perfect'
-import { Route as PastPerfectRouteImport } from './routes/past-perfect'
-import { Route as FlashcardsRouteImport } from './routes/flashcards'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as MadlibTenseNumRouteImport } from './routes/madlib.$tense.$num'
 
-const PresentPerfectRoute = PresentPerfectRouteImport.update({
-  id: '/present-perfect',
-  path: '/present-perfect',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PastPerfectRoute = PastPerfectRouteImport.update({
-  id: '/past-perfect',
-  path: '/past-perfect',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FlashcardsRoute = FlashcardsRouteImport.update({
-  id: '/flashcards',
-  path: '/flashcards',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MadlibTenseNumRoute = MadlibTenseNumRouteImport.update({
+  id: '/madlib/$tense/$num',
+  path: '/madlib/$tense/$num',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/flashcards': typeof FlashcardsRoute
-  '/past-perfect': typeof PastPerfectRoute
-  '/present-perfect': typeof PresentPerfectRoute
+  '/madlib/$tense/$num': typeof MadlibTenseNumRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/flashcards': typeof FlashcardsRoute
-  '/past-perfect': typeof PastPerfectRoute
-  '/present-perfect': typeof PresentPerfectRoute
+  '/madlib/$tense/$num': typeof MadlibTenseNumRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/flashcards': typeof FlashcardsRoute
-  '/past-perfect': typeof PastPerfectRoute
-  '/present-perfect': typeof PresentPerfectRoute
+  '/madlib/$tense/$num': typeof MadlibTenseNumRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/flashcards' | '/past-perfect' | '/present-perfect'
+  fullPaths: '/' | '/madlib/$tense/$num'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/flashcards' | '/past-perfect' | '/present-perfect'
-  id: '__root__' | '/' | '/flashcards' | '/past-perfect' | '/present-perfect'
+  to: '/' | '/madlib/$tense/$num'
+  id: '__root__' | '/' | '/madlib/$tense/$num'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  FlashcardsRoute: typeof FlashcardsRoute
-  PastPerfectRoute: typeof PastPerfectRoute
-  PresentPerfectRoute: typeof PresentPerfectRoute
+  MadlibTenseNumRoute: typeof MadlibTenseNumRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/present-perfect': {
-      id: '/present-perfect'
-      path: '/present-perfect'
-      fullPath: '/present-perfect'
-      preLoaderRoute: typeof PresentPerfectRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/past-perfect': {
-      id: '/past-perfect'
-      path: '/past-perfect'
-      fullPath: '/past-perfect'
-      preLoaderRoute: typeof PastPerfectRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/flashcards': {
-      id: '/flashcards'
-      path: '/flashcards'
-      fullPath: '/flashcards'
-      preLoaderRoute: typeof FlashcardsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -99,14 +58,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/madlib/$tense/$num': {
+      id: '/madlib/$tense/$num'
+      path: '/madlib/$tense/$num'
+      fullPath: '/madlib/$tense/$num'
+      preLoaderRoute: typeof MadlibTenseNumRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  FlashcardsRoute: FlashcardsRoute,
-  PastPerfectRoute: PastPerfectRoute,
-  PresentPerfectRoute: PresentPerfectRoute,
+  MadlibTenseNumRoute: MadlibTenseNumRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
