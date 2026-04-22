@@ -65,23 +65,23 @@ function MadLibPage() {
       {/* header */}
       <div
         className="relative overflow-hidden border-b border-border"
-        style={{ background: accent === "pp" ? "var(--gradient-pp)" : "var(--gradient-ppf)" }}
+        style={{ background: "var(--card)" }}
       >
         <div className="absolute inset-0 bg-grid opacity-30" />
         <div className="relative mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-14">
           <Link
             to="/"
-            className="inline-flex items-center gap-1 text-sm font-semibold text-white/90 hover:text-white"
+            className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:text-primary/80"
           >
             <ArrowLeft className="h-4 w-4" /> Back to U7 Study
           </Link>
           <div className="mt-4 flex items-center gap-3">
             <span className="text-5xl">{madlib.emoji}</span>
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.25em] text-white/80">
+              <p className="text-xs font-bold uppercase tracking-[0.25em] text-primary">
                 {tenseLabel} · #{madlib.number}
               </p>
-              <h1 className="text-3xl font-black tracking-tight text-white sm:text-4xl">
+              <h1 className="text-3xl font-black tracking-tight text-foreground sm:text-4xl">
                 {madlib.title}
               </h1>
             </div>
@@ -91,7 +91,7 @@ function MadLibPage() {
 
       <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6">
         {/* Inputs */}
-        <Card className="border-2 p-6" style={{ background: "var(--gradient-card)" }}>
+        <Card className="border-0 bg-muted p-6 shadow-none">
           <div className="mb-4 flex items-center justify-between">
             <h2 className="text-lg font-extrabold">Fill in the blanks</h2>
             <Badge variant="secondary" className="font-mono">
@@ -138,7 +138,6 @@ function MadLibPage() {
               <Button
                 onClick={() => setRevealed(true)}
                 disabled={!allFilled}
-                className="shadow-[var(--shadow-glow)]"
               >
                 <Wand2 className="h-4 w-4" /> Reveal Story
               </Button>
@@ -150,12 +149,7 @@ function MadLibPage() {
         {revealed && (
           <div className="mt-8 grid gap-6 lg:grid-cols-2">
             <Card
-              className="border-2 p-6"
-              style={{
-                background: "var(--gradient-card)",
-                borderColor: "oklch(0.72 0.22 320 / 0.5)",
-                boxShadow: "var(--shadow-glow)",
-              }}
+              className="border-0 bg-muted p-6 shadow-none"
             >
               <div className="mb-3 flex items-center gap-2">
                 <Sparkles className="h-4 w-4 text-primary" />
@@ -168,12 +162,7 @@ function MadLibPage() {
               </p>
             </Card>
             <Card
-              className="border-2 p-6"
-              style={{
-                background: "var(--gradient-card)",
-                borderColor: "oklch(0.78 0.18 200 / 0.5)",
-                boxShadow: "var(--shadow-glow-cyan)",
-              }}
+              className="border-0 bg-muted p-6 shadow-none"
             >
               <div className="mb-3 flex items-center gap-2">
                 <Sparkles className="h-4 w-4 text-accent" />

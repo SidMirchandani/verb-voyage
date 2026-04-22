@@ -36,29 +36,26 @@ function Index() {
       <TopNav />
 
       {/* Hero / Title */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden border-b border-border/40">
         <div className="absolute inset-0" style={{ background: "var(--gradient-hero)" }} />
-        <div className="absolute inset-0 bg-grid opacity-40" />
+        <div className="absolute inset-0 bg-grid opacity-20" />
         <div className="relative mx-auto max-w-6xl px-4 py-24 text-center sm:px-6 sm:py-32">
           <span className="inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-primary backdrop-blur">
             <Sparkles className="h-3.5 w-3.5" /> Unit 7 · Spanish
           </span>
           <h1 className="mt-6 text-5xl font-black tracking-tighter sm:text-7xl md:text-8xl">
-            <span className="text-glow text-foreground">U7</span>{" "}
-            <span
-              className="bg-clip-text text-transparent"
-              style={{ backgroundImage: "var(--gradient-primary)" }}
-            >
-              STUDY
-            </span>
+            <span className="text-foreground">U7</span> <span className="text-primary">STUDY</span>
           </h1>
+          <p className="mt-3 text-sm font-semibold tracking-wide text-muted-foreground">
+            Sid Kamath, Anay Mehrotra, Sahil Gupta, Anya Kumeta
+          </p>
           <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
             Master vocab through <span className="font-bold text-foreground">Mafia</span>,
             then conquer the <span className="font-bold text-foreground">Present Perfect</span> and{" "}
             <span className="font-bold text-foreground">Past Perfect</span> with chaotic Mad Libs.
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            <Button asChild size="lg" className="shadow-[var(--shadow-glow)] animate-pulse-glow">
+            <Button asChild size="lg">
               <a href={`#${sectionIds.vocab}`}>
                 <Skull className="h-5 w-5" /> Play Mafia
               </a>
@@ -86,8 +83,22 @@ function Index() {
       >
         <GrammarCard
           formula="haber (present) + past participle"
+          helperVerb="he, has, ha, hemos, habéis, han"
+          participleRule="-ar -> -ado, -er/-ir -> -ido"
           example="He estudiado mucho. — I have studied a lot."
-          explainer="Use it for actions that happened recently or that started in the past and still matter now."
+          explainer="Use this when a past action is connected to now (life experience, recent events, unfinished time periods)."
+          timeline="Action happened before now, but its result/importance is still current."
+          signalWords={["hoy", "esta semana", "ya", "todavía no", "alguna vez", "nunca"]}
+          irregulars={[
+            "abierto (abrir)",
+            "escrito (escribir)",
+            "hecho (hacer)",
+            "puesto (poner)",
+            "roto (romper)",
+            "visto (ver)",
+            "vuelto (volver)",
+            "dicho (decir)",
+          ]}
           accent="pp"
         />
         <MadLibGrid madlibs={PRESENT_PERFECT_MADLIBS} tense="present" accent="pp" />
@@ -102,8 +113,22 @@ function Index() {
       >
         <GrammarCard
           formula="haber (imperfect) + past participle"
+          helperVerb="había, habías, había, habíamos, habíais, habían"
+          participleRule="-ar -> -ado, -er/-ir -> -ido"
           example="Había estudiado antes del examen. — I had studied before the exam."
-          explainer="Use it for actions that happened before another past moment."
+          explainer="Use this for the earlier of two past actions. It sets background for a later past event."
+          timeline="Earlier past action + later past action (usually in preterite/imperfect)."
+          signalWords={["antes de", "ya", "todavía no", "cuando", "para cuando"]}
+          irregulars={[
+            "abierto (abrir)",
+            "escrito (escribir)",
+            "hecho (hacer)",
+            "puesto (poner)",
+            "roto (romper)",
+            "visto (ver)",
+            "vuelto (volver)",
+            "muerto (morir)",
+          ]}
           accent="ppf"
         />
         <MadLibGrid madlibs={PAST_PERFECT_MADLIBS} tense="past" accent="ppf" />
@@ -111,7 +136,7 @@ function Index() {
 
       <footer className="border-t border-border py-10">
         <p className="text-center text-sm text-muted-foreground">
-          U7 Study · Built with chaos and ❤️
+          U7 Study · Sid Kamath, Anay Mehrotra, Sahil Gupta, Anya Kumeta
         </p>
       </footer>
     </div>
@@ -124,12 +149,16 @@ function TopNav() {
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <a href="#top" className="flex items-center gap-2">
           <span
-            className="flex h-9 w-9 items-center justify-center rounded-lg font-black text-primary-foreground shadow-[var(--shadow-glow)]"
-            style={{ background: "var(--gradient-primary)" }}
+            className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary font-black text-primary-foreground"
           >
             U7
           </span>
-          <span className="text-lg font-extrabold tracking-tight">U7 Study</span>
+          <div className="leading-tight">
+            <span className="block text-lg font-extrabold tracking-tight">U7 Study</span>
+            <span className="hidden text-[11px] font-medium text-muted-foreground lg:block">
+              Sid Kamath, Anay Mehrotra, Sahil Gupta, Anya Kumeta
+            </span>
+          </div>
         </a>
         <nav className="flex items-center gap-1 text-sm font-semibold sm:gap-2">
           <a href={`#${sectionIds.vocab}`} className="rounded-md px-3 py-1.5 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground">
@@ -165,8 +194,7 @@ function SectionWrap({
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
         <div className="mb-10 flex items-center gap-3">
           <span
-            className="flex h-12 w-12 items-center justify-center rounded-xl text-primary-foreground shadow-[var(--shadow-glow)]"
-            style={{ background: "var(--gradient-primary)" }}
+            className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary text-primary-foreground"
           >
             {icon}
           </span>
@@ -183,38 +211,59 @@ function SectionWrap({
 
 function GrammarCard({
   formula,
+  helperVerb,
+  participleRule,
   example,
   explainer,
-  accent,
+  timeline,
+  signalWords,
+  irregulars,
+  accent: _accent,
 }: {
   formula: string;
+  helperVerb: string;
+  participleRule: string;
   example: string;
   explainer: string;
+  timeline: string;
+  signalWords: string[];
+  irregulars: string[];
   accent: "pp" | "ppf";
 }) {
   return (
     <Card
-      className="mb-8 border-2 p-6"
-      style={{
-        background: "var(--gradient-card)",
-        borderColor:
-          accent === "pp"
-            ? "oklch(0.72 0.22 320 / 0.4)"
-            : "oklch(0.55 0.22 280 / 0.5)",
-      }}
+      className="mb-8 border-0 bg-muted p-6 shadow-none"
     >
       <div className="grid gap-4 sm:grid-cols-3">
         <div>
           <p className="text-xs font-bold uppercase tracking-widest text-primary">Formula</p>
           <p className="mt-1 font-mono text-lg font-bold text-foreground">{formula}</p>
+          <p className="mt-2 text-sm text-muted-foreground">{helperVerb}</p>
         </div>
         <div>
           <p className="text-xs font-bold uppercase tracking-widest text-accent">Example</p>
           <p className="mt-1 text-sm italic text-foreground">{example}</p>
+          <p className="mt-2 text-sm text-muted-foreground">Participle rule: {participleRule}</p>
         </div>
         <div>
           <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">When</p>
           <p className="mt-1 text-sm text-muted-foreground">{explainer}</p>
+        </div>
+      </div>
+      <div className="mt-5 rounded-xl border-0 bg-muted p-4">
+        <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Timeline idea</p>
+        <p className="mt-1 text-sm text-foreground">{timeline}</p>
+      </div>
+      <div className="mt-5 grid gap-4 sm:grid-cols-2">
+        <div>
+          <p className="text-xs font-bold uppercase tracking-widest text-primary">Signal words</p>
+          <p className="mt-2 text-sm text-foreground">{signalWords.join(" · ")}</p>
+        </div>
+        <div>
+          <p className="text-xs font-bold uppercase tracking-widest text-primary">
+            Common irregular participles
+          </p>
+          <p className="mt-2 text-sm text-foreground">{irregulars.join(" · ")}</p>
         </div>
       </div>
     </Card>
@@ -224,7 +273,7 @@ function GrammarCard({
 function MadLibGrid({
   madlibs,
   tense,
-  accent,
+  accent: _accent,
 }: {
   madlibs: MadLib[];
   tense: "present" | "past";
@@ -237,26 +286,23 @@ function MadLibGrid({
           key={m.id}
           to="/madlib/$tense/$num"
           params={{ tense, num: String(m.number) }}
-          className="card-hover group block rounded-2xl border-2 p-6"
-          style={{
-            background: accent === "pp" ? "var(--gradient-pp)" : "var(--gradient-ppf)",
-            borderColor: "oklch(1 0 0 / 0.15)",
-          }}
+          className="card-hover group block rounded-2xl border-0 bg-muted p-6 shadow-none"
+          style={{ background: "var(--muted)" }}
         >
           <div className="flex items-center justify-between">
             <span className="text-4xl">{m.emoji}</span>
-            <span className="rounded-full bg-black/30 px-3 py-1 text-xs font-black tracking-widest text-white">
+            <span className="rounded-full bg-primary px-3 py-1 text-xs font-black tracking-widest text-primary-foreground">
               #{m.number}
             </span>
           </div>
-          <h3 className="mt-6 text-xl font-extrabold leading-tight text-white">
+          <h3 className="mt-6 text-xl font-extrabold leading-tight text-foreground">
             {m.title}
           </h3>
-          <p className="mt-2 text-xs font-semibold uppercase tracking-widest text-white/80">
+          <p className="mt-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground">
             {m.blanks.filter((b) => b.kind === "NOUN").length} nouns ·{" "}
             {m.blanks.filter((b) => b.kind === "VERB").length} verbs
           </p>
-          <span className="mt-6 inline-flex items-center gap-1 text-sm font-bold text-white">
+          <span className="mt-6 inline-flex items-center gap-1 text-sm font-bold text-primary">
             Play <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
           </span>
         </Link>

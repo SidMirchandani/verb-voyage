@@ -46,23 +46,17 @@ export function MafiaFlashcards() {
   return (
     <div className="space-y-6">
       {/* Mafia rules card */}
-      <Card className="relative overflow-hidden border-2 p-5 sm:p-6"
-        style={{
-          background: "var(--gradient-mafia)",
-          borderColor: "oklch(0.55 0.24 25 / 0.6)",
-          boxShadow: "var(--shadow-glow-mafia)",
-        }}
-      >
+      <Card className="relative overflow-hidden border-0 bg-muted p-5 shadow-none sm:p-6">
         <div className="absolute inset-0 bg-grid opacity-30" />
         <div className="relative flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div>
+          <div className="w-full">
             <div className="flex items-center gap-2">
               <span className="text-3xl">🔪</span>
-              <h3 className="text-2xl font-extrabold tracking-tight text-white text-glow-mafia sm:text-3xl">
+              <h3 className="text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
                 MAFIA: Vocab Edition
               </h3>
             </div>
-            <p className="mt-2 max-w-2xl text-sm leading-relaxed text-white/90 sm:text-base">
+            <p className="mt-2 w-full text-sm leading-relaxed text-foreground sm:text-base">
               Normal Mafia rules apply. <span className="font-bold">BUT</span> — when you're killed at night
               or voted out during the day, you get one last chance:
               <span className="font-bold"> translate 4 flashcards correctly to save yourself.</span>
@@ -78,7 +72,7 @@ export function MafiaFlashcards() {
           onClick={() => { setActiveCat("All"); setIndex(0); setFlipped(false); }}
           className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-all ${
             activeCat === "All"
-              ? "bg-primary text-primary-foreground shadow-[var(--shadow-glow)]"
+              ? "bg-primary text-primary-foreground"
               : "bg-secondary text-secondary-foreground hover:bg-secondary/70"
           }`}
         >
@@ -90,7 +84,7 @@ export function MafiaFlashcards() {
             onClick={() => { setActiveCat(c); setIndex(0); setFlipped(false); }}
             className={`rounded-full px-3 py-1.5 text-xs font-semibold transition-all ${
               activeCat === c
-                ? "bg-primary text-primary-foreground shadow-[var(--shadow-glow)]"
+                ? "bg-primary text-primary-foreground"
                 : "bg-secondary text-secondary-foreground hover:bg-secondary/70"
             }`}
           >
@@ -122,12 +116,7 @@ export function MafiaFlashcards() {
             >
               {/* Front */}
               <Card
-                className="backface-hidden absolute inset-0 flex flex-col items-center justify-center gap-3 border-2 p-6 text-center"
-                style={{
-                  background: "var(--gradient-card)",
-                  borderColor: "oklch(0.72 0.22 320 / 0.4)",
-                  boxShadow: "var(--shadow-glow)",
-                }}
+                className="backface-hidden absolute inset-0 flex flex-col items-center justify-center gap-3 border-0 bg-muted p-6 text-center shadow-none"
               >
                 <Badge variant="secondary" className="uppercase tracking-wider">
                   {card.category}
@@ -135,30 +124,25 @@ export function MafiaFlashcards() {
                 <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
                   {showEsFirst ? "Español" : "English"}
                 </p>
-                <h4 className="text-3xl font-extrabold text-foreground text-glow sm:text-4xl">
+                <h4 className="text-3xl font-extrabold text-foreground sm:text-4xl">
                   {showEsFirst ? card.es : card.en}
                 </h4>
                 <p className="mt-2 text-xs text-muted-foreground">Tap to flip</p>
               </Card>
               {/* Back */}
               <Card
-                className="backface-hidden rotate-y-180 absolute inset-0 flex flex-col items-center justify-center gap-3 border-2 p-6 text-center"
-                style={{
-                  background: "var(--gradient-primary)",
-                  borderColor: "oklch(0.78 0.18 200 / 0.6)",
-                  boxShadow: "var(--shadow-glow-cyan)",
-                }}
+                className="backface-hidden rotate-y-180 absolute inset-0 flex flex-col items-center justify-center gap-3 border-0 bg-muted p-6 text-center shadow-none"
               >
-                <Badge className="bg-background/40 uppercase tracking-wider text-white backdrop-blur">
+                <Badge className="bg-primary/15 uppercase tracking-wider text-foreground">
                   {card.category}
                 </Badge>
-                <p className="text-xs font-semibold uppercase tracking-widest text-white/80">
+                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
                   {showEsFirst ? "English" : "Español"}
                 </p>
-                <h4 className="text-3xl font-extrabold text-white sm:text-4xl">
+                <h4 className="text-3xl font-extrabold text-foreground sm:text-4xl">
                   {showEsFirst ? card.en : card.es}
                 </h4>
-                <p className="mt-2 text-xs text-white/70">Tap to flip back</p>
+                <p className="mt-2 text-xs text-muted-foreground">Tap to flip back</p>
               </Card>
             </div>
           </div>
@@ -171,7 +155,7 @@ export function MafiaFlashcards() {
               <RotateCcw className="h-4 w-4" />
               {(index % total) + 1} / {total}
             </div>
-            <Button onClick={next} className="shadow-[var(--shadow-glow)]">
+            <Button onClick={next}>
               Next <ChevronRight className="h-4 w-4" />
             </Button>
           </div>
