@@ -241,7 +241,7 @@ function GrammarCard({
           <p className="mt-2 text-sm text-muted-foreground">{helperVerb}</p>
         </div>
         <div>
-          <p className="text-xs font-bold uppercase tracking-widest text-accent">Example</p>
+          <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Example</p>
           <p className="mt-1 text-sm italic text-foreground">{example}</p>
           <p className="mt-2 text-sm text-muted-foreground">Participle rule: {participleRule}</p>
         </div>
@@ -250,7 +250,7 @@ function GrammarCard({
           <p className="mt-1 text-sm text-muted-foreground">{explainer}</p>
         </div>
       </div>
-      <div className="mt-5 rounded-xl border-0 bg-muted p-4">
+      <div className="mt-5 rounded-xl border border-border/50 bg-foreground/[0.055] p-4">
         <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Timeline idea</p>
         <p className="mt-1 text-sm text-foreground">{timeline}</p>
       </div>

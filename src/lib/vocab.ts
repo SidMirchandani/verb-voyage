@@ -195,7 +195,7 @@ export function translateNoun(input: string): string {
   // try without leading article
   const stripped = key.replace(/^(a|an|the)\s+/, "");
   if (NOUN_MAP[stripped]) return stripArticle(NOUN_MAP[stripped]);
-  return `${input} (?)`;
+  return input;
 }
 
 export function translateVerbToParticiple(input: string): string {
@@ -204,7 +204,7 @@ export function translateVerbToParticiple(input: string): string {
   let key = raw.replace(/^to\s+/, "");
   if (EN_PARTICIPLE_TO_BASE[key]) key = EN_PARTICIPLE_TO_BASE[key];
   if (VERB_PARTICIPLE_MAP[key]) return VERB_PARTICIPLE_MAP[key];
-  return `${input} (?)`;
+  return input;
 }
 
 // Normalize english verb for the english sentence (always show as past participle).
@@ -218,13 +218,20 @@ const EN_BASE_TO_PARTICIPLE: Record<string, string> = {
 };
 
 export function englishVerbParticiple(input: string): string {
-  const raw = input.trim().toLowerCase();
-  if (!raw) return "___";
-  let key = raw.replace(/^to\s+/, "");
-  // already participle?
-  if (Object.values(EN_BASE_TO_PARTICIPLE).includes(key)) return key;
+  const trimmed = input.trim();
+  if (!trimmed) return "___";
+  const key = trimmed.toLowerCase().replace(/^to\s+/, "");
+
+  const knownParticipleForms = new Set(Object.values(EN_BASE_TO_PARTICIPLE));
+  if (knownParticipleForms.has(key)) return trimmed;
+
   if (EN_BASE_TO_PARTICIPLE[key]) return EN_BASE_TO_PARTICIPLE[key];
-  // fallback: add -ed
-  if (key.endsWith("e")) return key + "d";
-  return key + "ed";
+
+  if (EN_PARTICIPLE_TO_BASE[key]) {
+    const base = EN_PARTICIPLE_TO_BASE[key];
+    return EN_BASE_TO_PARTICIPLE[base] ?? trimmed;
+  }
+
+  // Never synthesize -ed/-d: use exactly what the learner typed.
+  return trimmed;
 }
