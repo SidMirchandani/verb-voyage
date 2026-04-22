@@ -9,8 +9,26 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PresentPerfectRouteImport } from './routes/present-perfect'
+import { Route as PastPerfectRouteImport } from './routes/past-perfect'
+import { Route as FlashcardsRouteImport } from './routes/flashcards'
 import { Route as IndexRouteImport } from './routes/index'
 
+const PresentPerfectRoute = PresentPerfectRouteImport.update({
+  id: '/present-perfect',
+  path: '/present-perfect',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PastPerfectRoute = PastPerfectRouteImport.update({
+  id: '/past-perfect',
+  path: '/past-perfect',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FlashcardsRoute = FlashcardsRouteImport.update({
+  id: '/flashcards',
+  path: '/flashcards',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +37,61 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/flashcards': typeof FlashcardsRoute
+  '/past-perfect': typeof PastPerfectRoute
+  '/present-perfect': typeof PresentPerfectRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/flashcards': typeof FlashcardsRoute
+  '/past-perfect': typeof PastPerfectRoute
+  '/present-perfect': typeof PresentPerfectRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/flashcards': typeof FlashcardsRoute
+  '/past-perfect': typeof PastPerfectRoute
+  '/present-perfect': typeof PresentPerfectRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/flashcards' | '/past-perfect' | '/present-perfect'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/flashcards' | '/past-perfect' | '/present-perfect'
+  id: '__root__' | '/' | '/flashcards' | '/past-perfect' | '/present-perfect'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  FlashcardsRoute: typeof FlashcardsRoute
+  PastPerfectRoute: typeof PastPerfectRoute
+  PresentPerfectRoute: typeof PresentPerfectRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/present-perfect': {
+      id: '/present-perfect'
+      path: '/present-perfect'
+      fullPath: '/present-perfect'
+      preLoaderRoute: typeof PresentPerfectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/past-perfect': {
+      id: '/past-perfect'
+      path: '/past-perfect'
+      fullPath: '/past-perfect'
+      preLoaderRoute: typeof PastPerfectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/flashcards': {
+      id: '/flashcards'
+      path: '/flashcards'
+      fullPath: '/flashcards'
+      preLoaderRoute: typeof FlashcardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +104,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  FlashcardsRoute: FlashcardsRoute,
+  PastPerfectRoute: PastPerfectRoute,
+  PresentPerfectRoute: PresentPerfectRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
