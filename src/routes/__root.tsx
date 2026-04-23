@@ -30,7 +30,7 @@ export const Route = createRootRoute({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "U7 Study — Spanish Perfect Tenses" },
+      { title: "Spanish III - U7 Study" },
       { name: "description", content: "Vocab Mafia, Present Perfect & Past Perfect Mad Libs for Unit 7." },
       { property: "og:title", content: "U7 Study" },
       { property: "og:description", content: "Vocab Mafia + Mad Libs for Spanish Unit 7." },

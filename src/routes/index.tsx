@@ -8,7 +8,7 @@ import { Sparkles, BookOpen, Skull, ChevronRight, GraduationCap } from "lucide-r
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "U7 Study — Spanish Perfect Tenses" },
+      { title: "Spanish III - U7 Study" },
       {
         name: "description",
         content:
