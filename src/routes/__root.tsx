@@ -1,6 +1,7 @@
 import { Outlet, Link, createRootRoute, HeadContent, Scripts } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import faviconUrl from "../../SpanishLogo.png?url";
 
 function NotFoundComponent() {
   return (
@@ -37,6 +38,7 @@ export const Route = createRootRoute({
       { name: "twitter:card", content: "summary" },
     ],
     links: [
+      { rel: "icon", href: faviconUrl, type: "image/png" },
       {
         rel: "stylesheet",
         href: appCss,
