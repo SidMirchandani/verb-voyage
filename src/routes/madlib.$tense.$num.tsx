@@ -223,11 +223,7 @@ function MadLibPage() {
             ))}
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
-            <p className="text-xs text-muted-foreground">
-              Enter the same idea in English and Spanish for each blank (verbs: past participle in
-              both languages).
-            </p>
+          <div className="mt-6 flex flex-wrap items-center justify-end gap-3">
             <div className="flex gap-2">
               <Button variant="outline" onClick={reset}>
                 <RotateCcw className="h-4 w-4" /> Reset
