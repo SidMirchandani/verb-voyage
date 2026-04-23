@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound, useParams } from "@tanstack/react-router";
-import { ReactNode, useMemo, useState } from "react";
+import { ReactNode, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -76,6 +76,7 @@ function MadLibPage() {
   const madlib = useMemo(() => getMadLib(tense, num)!, [tense, num]);
 
   const [values, setValues] = useState<Record<string, { en: string; es: string }>>({});
+  const spanishOverriddenRef = useRef<Record<string, boolean>>({});
   const [revealed, setRevealed] = useState(false);
 
   const getEn = (id: string) => values[id]?.en ?? "";
@@ -95,11 +96,24 @@ function MadLibPage() {
     (b) => getEn(b.id).trim().length > 0 && getEs(b.id).trim().length > 0
   );
 
-  const setVal = (id: string, lang: "en" | "es", v: string) =>
+  const setVal = (id: string, lang: "en" | "es", v: string) => {
+    if (lang === "es") {
+      spanishOverriddenRef.current = { ...spanishOverriddenRef.current, [id]: true };
+      setValues((s) => ({
+        ...s,
+        [id]: { en: s[id]?.en ?? "", es: v },
+      }));
+      return;
+    }
+
     setValues((s) => ({
       ...s,
-      [id]: { en: lang === "en" ? v : (s[id]?.en ?? ""), es: lang === "es" ? v : (s[id]?.es ?? "") },
+      [id]: {
+        en: v,
+        es: spanishOverriddenRef.current[id] ? (s[id]?.es ?? "") : v,
+      },
     }));
+  };
 
   const reset = () => {
     setValues({});
