@@ -47,7 +47,7 @@ function Index() {
             <span className="text-foreground">U7</span> <span className="text-primary">STUDY</span>
           </h1>
           <p className="mt-3 text-sm font-semibold tracking-wide text-muted-foreground">
-            Sid Mirchandani, Anay Tandon, Sahil Ghosh, Anya Kumeta
+            Sid Mirchandani, Anay Tandon, Sahil Ghosh, Vaibhav Sitaraman
           </p>
           <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
             Master vocab through <span className="font-bold text-foreground">Mafia</span>,
@@ -136,7 +136,7 @@ function Index() {
 
       <footer className="border-t border-border py-10">
         <p className="text-center text-sm text-muted-foreground">
-          U7 Study · Sid Mirchandani, Anay Tandon, Sahil Ghosh, Anya Kumeta
+          U7 Study · Sid Mirchandani, Anay Tandon, Sahil Ghosh, Vaibhav Sitaraman
         </p>
       </footer>
     </div>
@@ -156,7 +156,7 @@ function TopNav() {
           <div className="leading-tight">
             <span className="block text-lg font-extrabold tracking-tight">U7 Study</span>
             <span className="hidden text-[11px] font-medium text-muted-foreground lg:block">
-              Sid Mirchandani, Anay Tandon, Sahil Ghosh, Anya Kumeta
+              Sid Mirchandani, Anay Tandon, Sahil Ghosh, Vaibhav Sitaraman
             </span>
           </div>
         </a>
